@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -51,6 +52,8 @@ public class Aware_Join_Study extends Aware_Activity {
     public static final String EXTRA_STUDY_URL = "study_url";
 
     private static String study_url;
+    private static String onboarding;
+
     private JSONArray study_configs;
 
     @Override
@@ -95,13 +98,33 @@ public class Aware_Join_Study extends Aware_Activity {
         //If we are getting here from an AWARE study link
         String scheme = getIntent().getScheme();
         if (scheme != null) {
-            if (Aware.DEBUG)
-                Log.d(Aware.TAG, "AWARE Link detected: " + getIntent().getDataString() + " SCHEME: " + scheme);
+
+            if (Aware.DEBUG) Log.d(Aware.TAG, "AWARE Link detected: " + getIntent().getDataString() + " SCHEME: " + scheme);
+
+            study_url = getIntent().getDataString();
             if (scheme.equalsIgnoreCase("aware")) {
                 study_url = getIntent().getDataString().replace("aware://", "http://");
             } else if (scheme.equalsIgnoreCase("aware-ssl")) {
                 study_url = getIntent().getDataString().replace("aware-ssl://", "https://");
             }
+
+            Uri url = Uri.parse(study_url);
+            onboarding = url.getQueryParameter("participant");
+            if (onboarding != null) {
+                if (Aware.DEBUG) Log.d(Aware.TAG, "AWARE Study participant ID detected: " + onboarding);
+                study_url = study_url.substring(0,study_url.indexOf("participant")-1);
+                if (Aware.DEBUG) Log.d(Aware.TAG, "AWARE Study URL: " + study_url);
+                participant_label.setText(onboarding);
+                participant_label.setFocusable(false);
+                participant_label.setEnabled(false);
+                participant_label.setCursorVisible(false);
+                participant_label.setKeyListener(null);
+                participant_label.setBackgroundColor(Color.TRANSPARENT);
+            } else {
+                onboarding = "";
+                participant_label.setText(onboarding);
+            }
+
         }
 
         if (Aware.DEBUG) Log.d(Aware.TAG, "Study URL:" + study_url);
@@ -376,21 +399,19 @@ public class Aware_Join_Study extends Aware_Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         setResult(Activity.RESULT_CANCELED);
+
+                        //Reset the webservice server status because this one is not valid
+                        Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_WEBSERVICE, false);
+
+                        Intent resetClient = new Intent(getApplicationContext(), Aware_Client.class);
+                        resetClient.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(resetClient);
                         finish();
                     }
                 });
                 builder.setTitle("Study information");
                 builder.setMessage("Unable to retrieve this study information: " + study_url + "\nTry again.");
                 builder.show();
-
-                //Reset the webservice server status because this one is not valid
-                Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_WEBSERVICE, false);
-
-                Intent resetClient = new Intent(getApplicationContext(), Aware_Client.class);
-                resetClient.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(resetClient);
-
-                finish();
 
             } else {
                 try {
@@ -446,6 +467,7 @@ public class Aware_Join_Study extends Aware_Activity {
                     Intent studyInfo = new Intent(getApplicationContext(), Aware_Join_Study.class);
                     studyInfo.putExtra(Aware_Join_Study.EXTRA_STUDY_URL, study_url);
                     studyInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    finish();
                     startActivity(studyInfo);
 
                 } catch (JSONException e) {
