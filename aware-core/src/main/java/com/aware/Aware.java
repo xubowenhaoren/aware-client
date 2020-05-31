@@ -2179,7 +2179,8 @@ public class Aware extends Service {
     public static class Aware_Broadcaster extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-
+            Log.d(Aware.TAG + " Aware", "ContextBroadcaster onReceive: " + intent.getAction());
+            Log.d(Aware.TAG + " Aware", "ContextBroadcaster onReceive: ");
             if (!(context.getPackageName().equals("com.aware.phone") || context.getApplicationContext().getResources().getBoolean(R.bool.standalone)))
                 return;
 

@@ -150,6 +150,8 @@ public class Aware_Sensor extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(Aware.TAG + " Aware_Sensor", "ContextBroadcaster onReceive: " + intent.getAction());
+            Log.d(Aware.TAG + " Aware_Sensor", "ContextBroadcaster onReceive: " + (provider.length() > 0));
             if (intent.getAction().equals(Aware.ACTION_AWARE_CURRENT_CONTEXT)) {
                 if (cp != null) {
                     cp.onContext();
