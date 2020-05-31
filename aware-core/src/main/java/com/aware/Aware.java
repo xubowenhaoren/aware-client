@@ -2188,6 +2188,7 @@ public class Aware extends Service {
                 Aware.reset(context);
             }
             if (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA)) {
+                Log.d(Aware.TAG + " Aware", "Syncing now");
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);

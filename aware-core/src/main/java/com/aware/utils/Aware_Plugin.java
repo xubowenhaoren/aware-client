@@ -186,6 +186,7 @@ public class Aware_Plugin extends Service {
                 }
             }
             if (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA) && provider.length() > 0) {
+                Log.d(Aware.TAG + " Aware_Plugin", "Syncing now");
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);

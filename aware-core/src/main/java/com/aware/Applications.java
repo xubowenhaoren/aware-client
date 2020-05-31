@@ -521,6 +521,7 @@ public class Applications extends AccessibilityService {
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + intent.getAction());
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + (AUTHORITY.length() > 0));
             if (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA) && AUTHORITY.length() > 0) {
+                Log.d(Aware.TAG + " Applications", "Syncing now");
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
