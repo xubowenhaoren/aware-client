@@ -519,6 +519,7 @@ public class Applications extends AccessibilityService {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + intent.getAction());
+            Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA)));
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + (AUTHORITY.length() > 0));
             if (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA) && AUTHORITY.length() > 0) {
                 Log.d(Aware.TAG + " Applications", "Syncing now");
