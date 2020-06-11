@@ -2179,8 +2179,8 @@ public class Aware extends Service {
     public static class Aware_Broadcaster extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(Aware.TAG + " Aware", "ContextBroadcaster onReceive: " + intent.getAction());
-            Log.d(Aware.TAG + " Aware", "ContextBroadcaster onReceive: ");
+            Log.d(Aware.TAG + " Aware.java", "ContextBroadcaster onReceive: " + intent.getAction());
+            Log.d(Aware.TAG + " Aware.java", "ContextBroadcaster onReceive: ");
             if (!(context.getPackageName().equals("com.aware.phone") || context.getApplicationContext().getResources().getBoolean(R.bool.standalone)))
                 return;
 
@@ -2188,7 +2188,7 @@ public class Aware extends Service {
                 Aware.reset(context);
             }
             if (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA)) {
-                Log.d(Aware.TAG + " Aware", "Syncing now");
+                Log.d(Aware.TAG + " Aware.java", "Syncing now");
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
