@@ -2192,6 +2192,7 @@ public class Aware extends Service {
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                Log.d(Aware.TAG + " Aware.java", Aware.getAWAREAccount(context) + " " + Aware_Provider.getAuthority(context));
                 ContentResolver.requestSync(Aware.getAWAREAccount(context), Aware_Provider.getAuthority(context), sync);
             }
         }

@@ -527,6 +527,7 @@ public class Applications extends AccessibilityService {
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                Log.d(Aware.TAG + " Applications", Aware.getAWAREAccount(context) + " " + AUTHORITY);
                 ContentResolver.requestSync(Aware.getAWAREAccount(context), AUTHORITY, sync);
             }
         }
