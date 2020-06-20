@@ -169,6 +169,7 @@ public class Aware_Plugin extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(Aware.TAG + " Aware_Plugin", "ContextBroadcaster INSIDE");
             Log.d(Aware.TAG + " Aware_Plugin", "ContextBroadcaster onReceive: " + intent.getAction());
             Log.d(Aware.TAG + " Aware_Plugin", "ContextBroadcaster onReceive: " + (provider.length() > 0));
             if (intent.getAction().equals(Aware.ACTION_AWARE_CURRENT_CONTEXT)) {

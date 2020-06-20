@@ -518,6 +518,7 @@ public class Applications extends AccessibilityService {
     public class ContextBroadcaster extends WakefulBroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(Aware.TAG + " Applications", "ContextBroadcaster INSIDE");
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + intent.getAction());
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + (intent.getAction().equals(Aware.ACTION_AWARE_SYNC_DATA)));
             Log.d(Aware.TAG + " Applications", "ContextBroadcaster onReceive: " + (AUTHORITY.length() > 0));
