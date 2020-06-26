@@ -172,6 +172,7 @@ public class Aware_Sensor extends Service {
                 Bundle sync = new Bundle();
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
                 sync.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                Log.d(Aware.TAG + " Aware_Sensor", Aware.getAWAREAccount(context) + " " + provider);
                 ContentResolver.requestSync(Aware.getAWAREAccount(context), provider, sync);
             }
         }
