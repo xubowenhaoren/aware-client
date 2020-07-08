@@ -93,6 +93,8 @@ public class AwareSyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.d(Aware.TAG + " AwareSyncAdapter", "onPerformSync called");
+        Log.d(Aware.TAG + " AwareSyncAdapter", "Account " + account + " authority " + authority + " provider " + provider);
+
         if (!Aware.getSetting(mContext, Aware_Preferences.WEBSERVICE_SILENT).equals("true"))
             notManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
