@@ -1868,7 +1868,7 @@ public class Aware extends Service {
         }
     }
 
-    public static void reset(Context context) {
+    public static void quitStudy(Context context) {
         String device_id = Aware.getSetting(context, Aware_Preferences.DEVICE_ID);
         String device_label = Aware.getSetting(context, Aware_Preferences.DEVICE_LABEL);
 
@@ -1913,6 +1913,10 @@ public class Aware extends Service {
             }
             if (Aware.DEBUG) Log.w(TAG, "AWARE plugins disabled...");
         }
+    }
+
+    public static void reset(Context context) {
+        quitStudy(context);
 
         Intent aware = new Intent(context, Aware.class);
         context.startService(aware);
