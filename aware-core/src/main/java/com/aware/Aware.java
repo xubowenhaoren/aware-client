@@ -1727,6 +1727,7 @@ public class Aware extends Service {
                             studyData.put(Aware_Provider.Aware_Studies.STUDY_DEVICE_ID, Aware.getSetting(getApplicationContext(), Aware_Preferences.DEVICE_ID));
                             studyData.put(Aware_Provider.Aware_Studies.STUDY_TIMESTAMP, System.currentTimeMillis());
                             studyData.put(Aware_Provider.Aware_Studies.STUDY_JOINED, System.currentTimeMillis());
+                            studyData.put(Aware_Provider.Aware_Studies.STUDY_EXIT, 0);
                             studyData.put(Aware_Provider.Aware_Studies.STUDY_KEY, study_id);
                             studyData.put(Aware_Provider.Aware_Studies.STUDY_API, study_api_key);
                             studyData.put(Aware_Provider.Aware_Studies.STUDY_URL, full_url);
